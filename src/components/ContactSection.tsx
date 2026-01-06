@@ -22,7 +22,7 @@ const contactInfo = [
     icon: Linkedin,
     label: 'LinkedIn',
     value: 'Connect on LinkedIn',
-    href: 'https://linkedin.com/in/harishr',
+    href: 'https://www.linkedin.com/in/harish-r-999062bb',
   },
   {
     icon: MapPin,
