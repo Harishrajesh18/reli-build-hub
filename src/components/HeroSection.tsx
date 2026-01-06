@@ -34,9 +34,11 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-fade-up opacity-0 stagger-5">
-              <Button size="lg" className="gap-2 glow-effect">
-                <Download size={18} />
-                Download Resume
+              <Button size="lg" className="gap-2 glow-effect" asChild>
+                <a href="/Harish.R_resume.pdf" download>
+                  <Download size={18} />
+                  Download Resume
+                </a>
               </Button>
               <Button variant="outline" size="lg" className="gap-2" asChild>
                 <a href="#contact">
