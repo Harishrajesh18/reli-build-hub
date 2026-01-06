@@ -1,13 +1,8 @@
 import { ArrowDown, Download, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import profilePhoto from '@/assets/profile-photo.png';
-
 const HeroSection = () => {
-  return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
-    >
+  return <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-navy-light" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
@@ -24,9 +19,7 @@ const HeroSection = () => {
               <span className="text-foreground">Harish </span>
               <span className="gradient-text">R</span>
             </h1>
-            <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-6 animate-fade-up opacity-0 stagger-3">
-              AWS DevOps / Site Reliability Engineer
-            </h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-6 animate-fade-up opacity-0 stagger-3">Cloud DevOps Engineer</h2>
             <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-up opacity-0 stagger-4">
               Building reliable, scalable, and secure cloud infrastructure. Passionate about 
               automation, monitoring, and ensuring 99.9% uptime for production systems.
@@ -56,11 +49,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-cyan-glow blur-md opacity-50 animate-glow-pulse" />
               {/* Photo container */}
               <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-primary/30 bg-card">
-                <img
-                  src={profilePhoto}
-                  alt="Harish R - AWS DevOps Engineer"
-                  className="w-full h-full object-cover"
-                />
+                <img src={profilePhoto} alt="Harish R - AWS DevOps Engineer" className="w-full h-full object-cover" />
               </div>
               {/* Status badge */}
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-card border border-border px-4 py-2 rounded-full">
@@ -80,8 +69,6 @@ const HeroSection = () => {
           </a>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;

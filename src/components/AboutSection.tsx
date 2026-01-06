@@ -1,31 +1,23 @@
 import { Cloud, Server, Shield, Terminal } from 'lucide-react';
-
-const highlights = [
-  {
-    icon: Cloud,
-    title: 'Cloud Expert',
-    description: 'Extensive experience with AWS services and cloud architecture',
-  },
-  {
-    icon: Terminal,
-    title: 'Automation',
-    description: 'CI/CD pipelines, Infrastructure as Code, and scripting',
-  },
-  {
-    icon: Server,
-    title: 'Infrastructure',
-    description: 'Linux administration, Docker containers, and system optimization',
-  },
-  {
-    icon: Shield,
-    title: 'Security',
-    description: 'Cloud security best practices and access control management',
-  },
-];
-
+const highlights = [{
+  icon: Cloud,
+  title: 'Cloud Expert',
+  description: 'Extensive experience with AWS services and cloud architecture'
+}, {
+  icon: Terminal,
+  title: 'Automation',
+  description: 'CI/CD pipelines, Infrastructure as Code, and scripting'
+}, {
+  icon: Server,
+  title: 'Infrastructure',
+  description: 'Linux administration, Docker containers, and system optimization'
+}, {
+  icon: Shield,
+  title: 'Security',
+  description: 'Cloud security best practices and access control management'
+}];
 const AboutSection = () => {
-  return (
-    <section id="about" className="py-20 md:py-32 relative">
+  return <section id="about" className="py-20 md:py-32 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-navy-light via-background to-background" />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -44,7 +36,7 @@ const AboutSection = () => {
           {/* Text Content */}
           <div className="space-y-6">
             <p className="text-muted-foreground leading-relaxed">
-              I'm an <span className="text-primary font-semibold">AWS DevOps / Site Reliability Engineer</span> with 
+              I'm an <span className="text-primary font-semibold">Cloud DevOps</span> with 
               over 1 year of hands-on experience in cloud infrastructure management. Currently working as a 
               Cloud Support Engineer at Shellkode, I focus on building and maintaining reliable, scalable, 
               and secure cloud environments.
@@ -79,24 +71,18 @@ const AboutSection = () => {
 
           {/* Highlights Grid */}
           <div className="grid sm:grid-cols-2 gap-4">
-            {highlights.map((item, index) => (
-              <div
-                key={item.title}
-                className="glass-card p-6 hover:border-primary/50 transition-all duration-300 group"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+            {highlights.map((item, index) => <div key={item.title} className="glass-card p-6 hover:border-primary/50 transition-all duration-300 group" style={{
+            animationDelay: `${index * 0.1}s`
+          }}>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <item.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
                 <p className="text-sm text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
