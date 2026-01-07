@@ -1,9 +1,17 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Mail, Phone, Linkedin, Send, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { z } from 'zod';
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters"),
+});
 
 const contactInfo = [
   {
@@ -38,23 +46,56 @@ const ContactSection = () => {
     email: '',
     message: '',
   });
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+    
+    const validation = contactSchema.safeParse(formData);
+    if (!validation.success) {
+      const fieldErrors: { name?: string; email?: string; message?: string } = {};
+      validation.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as keyof typeof fieldErrors] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
+    try {
+      await emailjs.send(
+        'service_mulk5ua',
+        'template_3mtngek',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Harish R',
+        },
+        't3klhdgHJ2gVLRkfB'
+      );
+      
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again later or contact me directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -117,8 +158,9 @@ const ContactSection = () => {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="John Doe"
                   required
-                  className="bg-background/50"
+                  className={`bg-background/50 ${errors.name ? 'border-destructive' : ''}`}
                 />
+                {errors.name && <p className="text-sm text-destructive mt-1">{errors.name}</p>}
               </div>
               
               <div>
@@ -132,8 +174,9 @@ const ContactSection = () => {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="john@example.com"
                   required
-                  className="bg-background/50"
+                  className={`bg-background/50 ${errors.email ? 'border-destructive' : ''}`}
                 />
+                {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
               </div>
               
               <div>
@@ -147,8 +190,9 @@ const ContactSection = () => {
                   placeholder="Tell me about your project..."
                   required
                   rows={5}
-                  className="bg-background/50"
+                  className={`bg-background/50 ${errors.message ? 'border-destructive' : ''}`}
                 />
+                {errors.message && <p className="text-sm text-destructive mt-1">{errors.message}</p>}
               </div>
 
               <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
