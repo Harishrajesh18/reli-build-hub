@@ -1,4 +1,4 @@
-import { ArrowDown, Download, Mail } from 'lucide-react';
+import { Download, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import profilePhoto from '@/assets/profile-photo.png';
 const HeroSection = () => {
@@ -20,10 +20,7 @@ const HeroSection = () => {
               <span className="gradient-text">R</span>
             </h1>
             <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-6 animate-fade-up opacity-0 stagger-3">Cloud DevOps Engineer</h2>
-            <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-up opacity-0 stagger-4">
-              Building reliable, scalable, and secure cloud infrastructure. Passionate about 
-              automation, monitoring, and ensuring 99.9% uptime for production systems.
-            </p>
+            <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-up opacity-0 stagger-4">Building reliable, scalable, and secure cloud infrastructure. Passionate about automation, monitoring and ensuring uptime for production systems.</p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-fade-up opacity-0 stagger-5">
@@ -65,7 +62,7 @@ const HeroSection = () => {
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
-            <ArrowDown size={24} />
+            
           </a>
         </div>
       </div>
